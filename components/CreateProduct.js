@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { Router } from 'next/dist/client/router';
 import useForm from '../lib/useForm';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
@@ -51,6 +52,10 @@ export default function CreateProduct() {
         e.preventDefault();
         await createProduct();
         clearForm();
+        // Got to that product's page
+        Router.push({
+          pathname: `/product/${data}`,
+        });
       }}
     >
       <DisplayError error={error} />
