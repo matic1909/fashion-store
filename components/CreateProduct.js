@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import { Router } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import useForm from '../lib/useForm';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
@@ -31,6 +31,7 @@ const CREATE_PRODUCT_MUTATION = gql`
   }
 `;
 export default function CreateProduct() {
+  const router = useRouter();
   const { inputs, handleChange, resetForm, clearForm } = useForm({
     image: '',
     name: 'Nils Matic',
@@ -50,12 +51,10 @@ export default function CreateProduct() {
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
-        await createProduct();
+        const res = await createProduct();
         clearForm();
         // Got to that product's page
-        Router.push({
-          pathname: `/product/${data}`,
-        });
+        router.push(`/product/${res.data.createProduct.id}`);
       }}
     >
       <DisplayError error={error} />
