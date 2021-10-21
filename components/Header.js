@@ -17,7 +17,7 @@ const Logo = styled.h1`
   }
 `;
 
-const StyledHeader = styled.header`
+const HeaderStyles = styled.header`
   .bar {
     border-bottom: 10px solid var(--black, black);
     display: grid;
@@ -25,7 +25,6 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: stretch;
   }
-
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -35,7 +34,7 @@ const StyledHeader = styled.header`
 
 export default function Header() {
   return (
-    <StyledHeader>
+    <HeaderStyles>
       <div className="bar">
         <Logo>
           <Link href="/">
@@ -47,6 +46,6 @@ export default function Header() {
       <div className="sub-bar">
         <p>Search</p>
       </div>
-    </StyledHeader>
+    </HeaderStyles>
   );
 }
